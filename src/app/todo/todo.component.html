@@ -1,0 +1,32 @@
+<mat-toolbar>
+    <span>Todos</span>
+    <span class="toolbar-spacer"></span>
+    <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Example delete icon" (click)="logout()">exit_to_app</mat-icon>
+</mat-toolbar>
+<form class="form" (ngSubmit)="addTodo($event)" role="form" [formGroup]="todoForm">
+    <mat-form-field class="full-width">
+        <mat-label>Todo Name</mat-label>
+        <input matInput formControlName="name" placeholder="Todo Name">
+        <mat-error>
+            Todo Name Required
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>User Name</mat-label>
+        <input formControlName="user" matInput placeholder="Todo Name">
+        <mat-error>
+            Todo Name Required
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Due Date</mat-label>
+        <input formControlName="dueDate"  matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error>
+            Due Date Required
+        </mat-error>
+    </mat-form-field>
+    <button mat-raised-button class="full-width" color="primary">Add Todo</button>
+</form>
+<app-todo-list [toDos]="toDos" (deleteEvent)="deleteTodos()"></app-todo-list>
